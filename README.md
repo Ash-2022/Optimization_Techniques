@@ -14,4 +14,4 @@ This is a C++ Repo implementing the following :
 </ul>
 
 # Note
-Tested with g++ Compiler with C++23 standard
+Tested with <strong> g++ </strong> Compiler with <strong> C++23 </strong> standard
