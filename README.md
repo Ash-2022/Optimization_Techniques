@@ -1,4 +1,4 @@
-# Optimizationm_Techniques
+# Optimization_Techniques
 
 This is a C++ Repo implementing the following : 
 <ul>
