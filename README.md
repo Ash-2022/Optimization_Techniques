@@ -13,5 +13,5 @@ This is a C++ Repo implementing the following :
   <li> Optimizing the Code </li>
 </ul>
 
-#Note
+# Note
 Tested with g++ Compiler with C++23 standard
