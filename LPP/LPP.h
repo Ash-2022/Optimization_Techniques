@@ -13,8 +13,6 @@
 // Constraints : A * X <= b
 // X >= 0
 
-enum class Operator { LT = 0, LE, GT, GE, EQ };
-
 class LPP {
    protected:
     size_t numVariables;
