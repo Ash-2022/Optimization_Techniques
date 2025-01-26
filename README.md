@@ -7,7 +7,7 @@ This is a C++ Repo implementing the following :
   <li> Solves the LPP using Ordinary Simplex Method </li>
 </ul>
 
-# CAdditional Improvements for this repo
+# Additional Improvements for this repo
 <ul>
   <li> Trying to add variation of Simplex like : M-Method and 2-Phase Method </li>
   <li> Optimizing the Code (Uses Brute-Force since it is a Proof of Concept) </li>
