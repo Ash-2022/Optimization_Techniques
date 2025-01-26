@@ -1,5 +1,11 @@
 #include "../LPP/LPP.h"
 
+// Standard LPP is a LPP of the Form
+// Max Z = c.T * X + d.T * S 
+// Subject to
+// Constraints : D * X + E * S = b
+// X , S >= 0
+
 class StandardLPP : protected LPP {
    private:
     int numSlackOrSurplus;

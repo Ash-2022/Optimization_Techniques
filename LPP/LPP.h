@@ -10,7 +10,7 @@
 // Takes in a LPP of the Form
 // Max Z = c.T * X
 // Subject to
-// Constraints : A * X <= b
+// Constraints : D * X <= b
 // X >= 0
 
 class LPP {
