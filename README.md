@@ -12,3 +12,6 @@ This is a C++ Repo implementing the following :
   <li> Trying to add variation of Simplex like : <strong>M-Method</strong> and <strong>2-Phase Method</strong> </li>
   <li> Optimizing the Code </li>
 </ul>
+
+#Note
+Tested with g++ Compiler with C++23 standard
