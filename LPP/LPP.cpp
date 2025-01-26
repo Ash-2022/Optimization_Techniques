@@ -9,6 +9,6 @@ int main(){
     size_t numConstraints{0};
     std::cin >> numConstraints;
     LPP lppFormulation(numVariables, numConstraints);
-    lppFormulation.getLPP();
+    lppFormulation.getOriginalLPP();
     return 0;
 }

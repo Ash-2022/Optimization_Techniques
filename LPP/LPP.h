@@ -21,15 +21,14 @@ enum class Operator{
 };
 
 class LPP{
-    private:
+    protected:
         size_t numVariables;
         size_t numConstraints;
         std::vector<double> objFunctionCoeffVector;
         std::vector<double> decisionVariableVector;
         std::vector<std::vector<double>> constraintsCoeffMatrix;
-        // std::vector<std::vector<double>> bodyMatrix;
         std::vector<double> bVector;
-        // std::vector<double> slackOrSurplusVector;
+        std::vector<std::string> constraintOperators;
         std::string optimizationType;
 
     public:
@@ -40,6 +39,7 @@ class LPP{
             decisionVariableVector(numVariables, 0.0),
             constraintsCoeffMatrix(numConstraints, std::vector<double>(numVariables, 0.0)),
             bVector(numConstraints, 0.0),
+            constraintOperators(numConstraints, "<="),
             optimizationType("")
         {
             // Set Optimization Type
@@ -75,6 +75,13 @@ class LPP{
                 this->constraintsCoeffMatrix[constraintIdx][varIdx] = coeff;
             }
         }
+        void setEachConstraintOperator(size_t constraintIdx){
+            using namespace std;
+            cout << "Enter the Operator of Constraint " << constraintIdx << " : ";
+            string op;
+            cin >> op;
+            this->constraintOperators[constraintIdx] = op;
+        }
         void setEachConstraintBias(size_t constraintIdx){
             using namespace std;
             cout << "Enter the Bias of Constraint " << constraintIdx << " : ";
@@ -84,6 +91,7 @@ class LPP{
         }
         void setEachConstraint(size_t constraintIdx){
             this->setEachConstraintCoeff(constraintIdx);
+            this->setEachConstraintOperator(constraintIdx);
             this->setEachConstraintBias(constraintIdx);
         }
         void setConstraints(){
@@ -107,19 +115,24 @@ class LPP{
                 for(size_t varIdx = 0; varIdx < this->numVariables - 1; varIdx++){
                     cout << this->constraintsCoeffMatrix[constraintIdx][varIdx] << "x" << varIdx+1 << " + ";
                 }
-                cout << this->constraintsCoeffMatrix[constraintIdx][numVariables - 1] << "x" << numVariables << " <= " << this->bVector[constraintIdx] << endl;
+                cout << this->constraintsCoeffMatrix[constraintIdx][numVariables - 1] << "x" << numVariables << " " << this->constraintOperators[constraintIdx] << " " << this->bVector[constraintIdx] << endl;
             }
         }
-        void getLPP(){
+        void getOriginalLPP(){
             using namespace std;
             cout << "LPP : " << endl;
             this->getObjectiveFunction();
             this->getConstraints();
             cout << "Non-Negativity Constriant : ";
-            for(size_t varIdx = 0; varIdx < this->numVariables - 1; varIdx++){
-                cout << "x" << varIdx+1 << ", ";
+            if(numVariables == 0){
+                cout << "Invalid LPP" << endl;
+                return;
             }
-            cout << "x" << numVariables << " >= 0" << endl;
+            cout << "x1";
+            for(size_t varIdx = 1; varIdx < this->numVariables; varIdx++){
+                cout << " ,x" << varIdx+1;
+            }
+            cout << " >= 0" << endl;
         }
 };
 
