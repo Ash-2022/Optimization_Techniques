@@ -1,4 +1,4 @@
-# Optimization_Techniques
+# (Linear Programming Problem) LPP Solver
 
 This is a C++ Repo implementing the following : 
 <ul>
