@@ -31,13 +31,11 @@ class StandardLPP : protected LPP {
                 bodyMatrix[i][j] = this->constraintsCoeffMatrix[i][j];
             }
             if (this->constraintOperators[i] != "=") {
-                for (size_t j = 0; j < this->numSlackOrSurplus; j++) {
-                    bodyMatrix[i][this->numVariables + j] =
-                        (this->constraintOperators[i] == ">" ||
-                         this->constraintOperators[i] == ">=")
-                            ? (double)-1.0
-                            : (double)1.0;
-                }
+                bodyMatrix[i][this->numVariables + i] =
+                    (this->constraintOperators[i] == ">" ||
+                     this->constraintOperators[i] == ">=")
+                        ? (double)-1.0
+                        : (double)1.0;
             }
             bodyMatrix[i][this->numVariables + this->numSlackOrSurplus] =
                 this->bVector[i];
@@ -50,7 +48,7 @@ class StandardLPP : protected LPP {
                 this->objFunctionCoeffVector[i] *= -1.0;
             }
         }
-        for(size_t i = 0; i < this->numSlackOrSurplus; i++){
+        for (size_t i = 0; i < this->numSlackOrSurplus; i++) {
             this->objFunctionCoeffVector.push_back(0.0);
         }
     }
@@ -66,7 +64,6 @@ class StandardLPP : protected LPP {
         this->convertObjectiveFunctionToStandardForm();
         // Setting Body Matrix
         this->setBodyMatrix();
-
     }
     void rowTransformation(size_t rowToTransform, double scale,
                            size_t baseRow) {
@@ -91,7 +88,9 @@ class StandardLPP : protected LPP {
     void displayObjectiveFunction() override {
         using namespace std;
         cout << fixed << setprecision(4);
-        cout << "Objective Function : " << this->optimizationType << " Z = ";
+        cout << "Objective Function : Max"
+             << (this->optimizationType.compare("max") ? "(Z) = " : "(-Z) = ")
+             << endl;
         for (size_t varIdx = 0; varIdx < this->numVariables; varIdx++) {
             cout << this->objFunctionCoeffVector[varIdx] << "x" << varIdx + 1
                  << " + ";
