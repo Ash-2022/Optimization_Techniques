@@ -5,6 +5,7 @@
 #include <limits>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 
 // Takes in a LPP of the Form
@@ -98,8 +99,9 @@ class LPP {
             this->setEachConstraint(constraintIdx);
         }
     }
-    void getObjectiveFunction() {
+    virtual void displayObjectiveFunction() {
         using namespace std;
+        cout << fixed << setprecision(4);
         cout << "Objective Function : " << this->optimizationType << " Z = ";
         for (size_t varIdx = 0; varIdx < this->numVariables - 1; varIdx++) {
             cout << this->objFunctionCoeffVector[varIdx] << "x" << varIdx + 1
@@ -108,8 +110,9 @@ class LPP {
         cout << this->objFunctionCoeffVector[numVariables - 1] << "x"
              << numVariables << endl;
     }
-    void getConstraints() {
+    virtual void displayConstraints() {
         using namespace std;
+        cout << fixed << setprecision(4);
         for (size_t constraintIdx = 0; constraintIdx < this->numConstraints;
              constraintIdx++) {
             cout << "Constraints " << constraintIdx << " : ";
@@ -124,11 +127,11 @@ class LPP {
                 << this->bVector[constraintIdx] << endl;
         }
     }
-    void getOriginalLPP() {
+    virtual void displayOriginalLPP() {
         using namespace std;
         cout << "LPP : " << endl;
-        this->getObjectiveFunction();
-        this->getConstraints();
+        this->displayObjectiveFunction();
+        this->displayConstraints();
         cout << "Non-Negativity Constriant : ";
         if (numVariables == 0) {
             cout << "Invalid LPP" << endl;
@@ -140,6 +143,8 @@ class LPP {
         }
         cout << " >= 0" << endl;
     }
+
+    virtual ~LPP() = default;
 };
 
 #endif

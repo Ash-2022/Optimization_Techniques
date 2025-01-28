@@ -1,4 +1,4 @@
-#include "LPP.h"
+#include "StandardLPP.h"
 
 int main(){
     std::cout << "Enter num of Decision Variables : ";
@@ -7,7 +7,7 @@ int main(){
     std::cout << "Enter num of Constraints : ";
     size_t numConstraints{0};
     std::cin >> numConstraints;
-    LPP lppFormulation(numVariables, numConstraints);
-    lppFormulation.displayOriginalLPP();
+    StandardLPP lppFormulation(numVariables, numConstraints);
+    lppFormulation.displayStandardLPP();
     return 0;
 }
